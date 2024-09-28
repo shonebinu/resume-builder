@@ -1,5 +1,6 @@
 import EditorCard from "./EditorCard";
 import EntryCard from "./EntryCard";
+import AddEntryButton from "./AddEntryButton";
 
 function EducationEditor({ educationDetails, setEducationDetails }) {
   const fields = [
@@ -23,6 +24,22 @@ function EducationEditor({ educationDetails, setEducationDetails }) {
     setEducationDetails(updatedEducationDetails);
   };
 
+  const handleAdd = () => {
+    const updatedEducationDetails = educationDetails.map((education) => ({
+      ...education,
+    }));
+
+    updatedEducationDetails.push({
+      id: crypto.randomUUID(),
+      institute: "New Education",
+      study: "",
+      timeline: "",
+      score: "",
+    });
+
+    setEducationDetails(updatedEducationDetails);
+  };
+
   return (
     <EditorCard title="Education Details">
       {educationDetails.map((education) => (
@@ -34,6 +51,7 @@ function EducationEditor({ educationDetails, setEducationDetails }) {
           onDelete={handleDelete}
         />
       ))}
+      <AddEntryButton handleAdd={handleAdd} />
     </EditorCard>
   );
 }

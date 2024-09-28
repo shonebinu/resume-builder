@@ -10,7 +10,7 @@ function EntryCard({ entry, fields, onChange, onDelete }) {
     <div className="flex flex-col gap-2">
       <button
         onClick={handleToggle}
-        className="flex justify-between border rounded border-neutral-300 p-2"
+        className="flex justify-between border-2 rounded border-neutral-300 p-2"
       >
         <span>{entry.institute}</span>
         <span>{isExpanded ? "🡩" : "🡫"}</span>
