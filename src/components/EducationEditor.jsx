@@ -1,5 +1,5 @@
 import EditorCard from "./EditorCard";
-import EditorInputField from "./EditorInputField";
+import EntryCard from "./EntryCard";
 
 function EducationEditor({ educationDetails, setEducationDetails }) {
   const fields = [
@@ -16,20 +16,23 @@ function EducationEditor({ educationDetails, setEducationDetails }) {
     setEducationDetails(updatedEducationDetails);
   };
 
+  const handleDelete = (id) => {
+    const updatedEducationDetails = educationDetails
+      .filter((education) => education.id !== id)
+      .map((education) => ({ ...education }));
+    setEducationDetails(updatedEducationDetails);
+  };
+
   return (
     <EditorCard title="Education Details">
       {educationDetails.map((education) => (
-        <div key={education.id} className="flex flex-col gap-2">
-          {fields.map(({ label, type, key }) => (
-            <EditorInputField
-              key={`${education.id}-${key}`}
-              label={label}
-              type={type}
-              value={education[key]}
-              onChange={(e) => handleChange(education.id, key, e.target.value)}
-            />
-          ))}
-        </div>
+        <EntryCard
+          key={education.id}
+          entry={education}
+          fields={fields}
+          onChange={handleChange}
+          onDelete={handleDelete}
+        />
       ))}
     </EditorCard>
   );
