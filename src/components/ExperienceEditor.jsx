@@ -4,8 +4,8 @@ import AddEntryButton from "./AddEntryButton";
 
 function ExperienceEditor({ experienceDetails, setExperienceDetails }) {
   const fields = [
-    { label: "Position", type: "text", key: "position" },
     { label: "Company", type: "text", key: "company" },
+    { label: "Position", type: "text", key: "position" },
     { label: "Timeline", type: "text", key: "timeline" },
     { label: "Description", type: "text", key: "description" },
   ];
@@ -31,8 +31,8 @@ function ExperienceEditor({ experienceDetails, setExperienceDetails }) {
 
     updatedExperienceDetails.push({
       id: crypto.randomUUID(),
-      position: "New Position",
-      company: "",
+      company: "New Position",
+      position: "",
       timeline: "",
       description: "",
     });
@@ -45,7 +45,7 @@ function ExperienceEditor({ experienceDetails, setExperienceDetails }) {
       {experienceDetails.map((experience) => (
         <EntryCard
           key={experience.id}
-          title={experience.position}
+          title={experience.company}
           entry={experience}
           fields={fields}
           onChange={handleChange}

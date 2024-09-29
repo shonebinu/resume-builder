@@ -4,8 +4,8 @@ import AddEntryButton from "./AddEntryButton";
 
 function EducationEditor({ educationDetails, setEducationDetails }) {
   const fields = [
-    { label: "Study", type: "text", key: "study" },
     { label: "Institute", type: "text", key: "institute" },
+    { label: "Study", type: "text", key: "study" },
     { label: "Timeline", type: "text", key: "timeline" },
     { label: "Score", type: "text", key: "score" },
   ];
@@ -31,8 +31,8 @@ function EducationEditor({ educationDetails, setEducationDetails }) {
 
     updatedEducationDetails.push({
       id: crypto.randomUUID(),
-      study: "New Education",
-      institute: "",
+      institute: "New Education",
+      study: "",
       timeline: "",
       score: "",
     });
@@ -45,7 +45,7 @@ function EducationEditor({ educationDetails, setEducationDetails }) {
       {educationDetails.map((education) => (
         <EntryCard
           key={education.id}
-          title={education.study}
+          title={education.institute}
           entry={education}
           fields={fields}
           onChange={handleChange}
