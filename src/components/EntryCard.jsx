@@ -1,7 +1,7 @@
 import { useState } from "react";
 import EditorInputField from "./EditorInputField";
 
-function EntryCard({ entry, fields, onChange, onDelete }) {
+function EntryCard({ title, entry, fields, onChange, onDelete }) {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const handleToggle = () => setIsExpanded(!isExpanded);
@@ -10,9 +10,9 @@ function EntryCard({ entry, fields, onChange, onDelete }) {
     <div className="flex flex-col gap-2">
       <button
         onClick={handleToggle}
-        className="flex justify-between border-2 rounded border-neutral-300 p-2"
+        className="flex justify-between gap-5 border rounded border-neutral-300 p-2"
       >
-        <span>{entry.institute}</span>
+        <span>{title}</span>
         <span>{isExpanded ? "🡩" : "🡫"}</span>
       </button>
       {isExpanded && (
