@@ -19,7 +19,7 @@ function Section({ title, accentColor, children }) {
     <section>
       <h3
         style={{ color: accentColor, backgroundColor }}
-        className="text-xl font-bold p-1 text-center mb-2"
+        className="text-xl font-bold p-1 text-center mb-3"
       >
         {title}
       </h3>
@@ -34,42 +34,58 @@ function ResumeView({
   experienceDetails,
   resumeSettings,
 }) {
-  const { fontStyle, fontColor, accentColor } = resumeSettings;
-  const { name, email, phone, address } = personalDetails;
-
   return (
     <div
-      className={`flex flex-col bg-neutral-50 aspect-[1/1.414] w-[50rem] font-${resumeSettings.fontStyle}`}
+      className={`flex flex-col bg-neutral-50 aspect-[1/1.414] lg:w-[50rem] w-full font-${resumeSettings.fontStyle}`}
     >
       <div
-        style={{ color: fontColor, backgroundColor: accentColor }}
+        style={{
+          color: resumeSettings.fontColor,
+          backgroundColor: resumeSettings.accentColor,
+        }}
         className="flex flex-col gap-4 items-center py-8"
       >
-        <h1 className="font-bold text-3xl">{name}</h1>
+        <h1 className="font-bold text-3xl">{personalDetails.name}</h1>
         <div className="flex flex-wrap justify-center gap-5">
-          <IconWithText icon={mdiEmail} text={email} />
-          <IconWithText icon={mdiPhone} text={phone} />
-          <IconWithText icon={mdiMapMarker} text={address} />
+          <IconWithText icon={mdiEmail} text={personalDetails.email} />
+          <IconWithText icon={mdiPhone} text={personalDetails.phone} />
+          <IconWithText icon={mdiMapMarker} text={personalDetails.address} />
         </div>
       </div>
 
       <div className="pt-8 px-14 flex flex-col gap-8">
-        <Section title="Education" accentColor={accentColor}>
+        <Section title="Education" accentColor={resumeSettings.accentColor}>
           {educationDetails.map((education) => (
-            <div key={education.id} className="flex gap-10 mb-4">
-              <div>
-                <p>{education.timeline}</p>
-                <p>{education.institute}</p>
+            <div key={education.id} className="flex mb-4">
+              <div className="w-1/3">
+                <p className="underline">{education.institute}</p>
+                <p className="text-sm">{education.timeline}</p>
               </div>
-              <div>
-                <p>{education.study}</p>
+              <div className="w-2/3">
+                <p className="font-medium">{education.study}</p>
                 <p>{education.score}</p>
               </div>
             </div>
           ))}
         </Section>
 
-        <Section title="Work Experience" accentColor={accentColor}></Section>
+        <Section
+          title="Work Experience"
+          accentColor={resumeSettings.accentColor}
+        >
+          {experienceDetails.map((experience) => (
+            <div key={experience.id} className="flex mb-4">
+              <div className="w-1/3">
+                <p className="underline">{experience.company}</p>
+                <p className="text-sm">{experience.timeline}</p>
+              </div>
+              <div className="w-2/3">
+                <p className="font-medium">{experience.position}</p>
+                <p>{experience.description}</p>
+              </div>
+            </div>
+          ))}
+        </Section>
       </div>
     </div>
   );

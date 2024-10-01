@@ -56,7 +56,7 @@ function App() {
   const [resumeSettings, setResumeSettings] = useState(DEFAULT_RESUME_SETTINGS);
 
   return (
-    <main className="flex gap-6 justify-center">
+    <main className="flex gap-6 justify-center flex-wrap">
       <section className="flex flex-col gap-4">
         <ProfileEditor
           personalDetails={personalDetails}
