@@ -2,6 +2,7 @@ import { useState } from "react";
 import ProfileEditor from "./components/ProfileEditor";
 import EducationEditor from "./components/EducationEditor";
 import ExperienceEditor from "./components/ExperienceEditor";
+import ResumeSettings from "./components/ResumeSettings";
 import ResumeView from "./components/ResumeView";
 
 const DEFAULT_PROFILE_DATA = {
@@ -38,6 +39,12 @@ const DEFAULT_EXPERIENCE_DATA = [
   },
 ];
 
+const DEFAULT_RESUME_SETTINGS = {
+  accentColor: "#0e374e",
+  fontColor: "#fafafa",
+  fontStyle: "sans",
+};
+
 function App() {
   const [personalDetails, setPersonalDetails] = useState(DEFAULT_PROFILE_DATA);
   const [educationDetails, setEducationDetails] = useState(
@@ -46,9 +53,10 @@ function App() {
   const [experienceDetails, setExperienceDetails] = useState(
     DEFAULT_EXPERIENCE_DATA
   );
+  const [resumeSettings, setResumeSettings] = useState(DEFAULT_RESUME_SETTINGS);
 
   return (
-    <main className="flex">
+    <main className="flex gap-6 justify-center">
       <section className="flex flex-col gap-4">
         <ProfileEditor
           personalDetails={personalDetails}
@@ -62,9 +70,18 @@ function App() {
           experienceDetails={experienceDetails}
           setExperienceDetails={setExperienceDetails}
         />
+        <ResumeSettings
+          resumeSettings={resumeSettings}
+          setResumeSettings={setResumeSettings}
+        />
       </section>
       <section>
-        <ResumeView />
+        <ResumeView
+          personalDetails={personalDetails}
+          educationDetails={educationDetails}
+          experienceDetails={experienceDetails}
+          resumeSettings={resumeSettings}
+        />
       </section>
     </main>
   );

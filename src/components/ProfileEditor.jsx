@@ -1,3 +1,5 @@
+import Icon from "@mdi/react";
+import { mdiAccountTie } from "@mdi/js";
 import EditorCard from "./EditorCard";
 import EditorInputField from "./EditorInputField";
 
@@ -10,7 +12,10 @@ function ProfileEditor({ personalDetails, setPersonalDetails }) {
   ];
 
   return (
-    <EditorCard title="Personal Details">
+    <EditorCard
+      title="Personal Details"
+      icon={<Icon path={mdiAccountTie} size={1} />}
+    >
       {fields.map(({ label, type, key }) => (
         <EditorInputField
           key={key}

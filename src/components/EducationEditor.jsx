@@ -1,3 +1,5 @@
+import Icon from "@mdi/react";
+import { mdiSchool } from "@mdi/js";
 import EditorCard from "./EditorCard";
 import EntryCard from "./EntryCard";
 import AddEntryButton from "./AddEntryButton";
@@ -41,7 +43,10 @@ function EducationEditor({ educationDetails, setEducationDetails }) {
   };
 
   return (
-    <EditorCard title="Education Details">
+    <EditorCard
+      title="Education Details"
+      icon={<Icon path={mdiSchool} size={1} />}
+    >
       {educationDetails.map((education) => (
         <EntryCard
           key={education.id}

@@ -4,6 +4,8 @@ export default {
   theme: {
     fontFamily: {
       sans: ["Rubik", "sans-serif"],
+      serif: ["serif"],
+      mono: ["monospace"],
     },
     extend: {},
   },

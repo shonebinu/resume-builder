@@ -1,3 +1,5 @@
+import Icon from "@mdi/react";
+import { mdiBriefcase } from "@mdi/js";
 import EditorCard from "./EditorCard";
 import EntryCard from "./EntryCard";
 import AddEntryButton from "./AddEntryButton";
@@ -41,7 +43,10 @@ function ExperienceEditor({ experienceDetails, setExperienceDetails }) {
   };
 
   return (
-    <EditorCard title="Experience Details">
+    <EditorCard
+      title="Experience Details"
+      icon={<Icon path={mdiBriefcase} size={1} />}
+    >
       {experienceDetails.map((experience) => (
         <EntryCard
           key={experience.id}
