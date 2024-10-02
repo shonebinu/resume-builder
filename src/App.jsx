@@ -75,7 +75,7 @@ function App() {
           setResumeSettings={setResumeSettings}
         />
       </section>
-      <section>
+      <section id="resume-view">
         <ResumeView
           personalDetails={personalDetails}
           educationDetails={educationDetails}

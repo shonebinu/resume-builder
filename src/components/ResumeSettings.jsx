@@ -67,6 +67,7 @@ function ResumeSettings({ resumeSettings, setResumeSettings }) {
         }}
         className="rounded-md py-2 border border-neutral-300 transition hover:scale-105"
         title="Save the resume as a PDF"
+        onClick={() => window.print()}
       >
         Save PDF
       </button>
