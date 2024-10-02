@@ -14,7 +14,6 @@ function IconWithText({ icon, text }) {
 function Section({ title, accentColor, children }) {
   const backgroundColor =
     getLuminance(accentColor) < 0.5 ? "#e5e5e5" : "#404040";
-
   return (
     <section>
       <h3
@@ -28,20 +27,37 @@ function Section({ title, accentColor, children }) {
   );
 }
 
+function DetailItem({ left, right }) {
+  return (
+    <div className="flex mb-4">
+      <div className="w-1/3">
+        <p className="underline">{left.top}</p>
+        <p className="text-sm">{left.bottom}</p>
+      </div>
+      <div className="w-2/3">
+        <p className="font-medium">{right.top}</p>
+        <p>{right.bottom}</p>
+      </div>
+    </div>
+  );
+}
+
 function ResumeView({
   personalDetails,
   educationDetails,
   experienceDetails,
   resumeSettings,
 }) {
+  const { accentColor, fontColor, fontStyle } = resumeSettings;
+
   return (
     <div
-      className={`flex flex-col bg-neutral-50 aspect-[1/1.414] lg:w-[50rem] w-full font-${resumeSettings.fontStyle}`}
+      className={`flex flex-col bg-neutral-50 aspect-[1/1.414] lg:w-[50rem] w-full font-${fontStyle}`}
     >
       <div
         style={{
-          color: resumeSettings.fontColor,
-          backgroundColor: resumeSettings.accentColor,
+          color: fontColor,
+          backgroundColor: accentColor,
         }}
         className="flex flex-col gap-4 items-center py-8"
       >
@@ -52,38 +68,32 @@ function ResumeView({
           <IconWithText icon={mdiMapMarker} text={personalDetails.address} />
         </div>
       </div>
-
       <div className="pt-8 px-14 flex flex-col gap-8">
-        <Section title="Education" accentColor={resumeSettings.accentColor}>
+        <Section title="Education" accentColor={accentColor}>
           {educationDetails.map((education) => (
-            <div key={education.id} className="flex mb-4">
-              <div className="w-1/3">
-                <p className="underline">{education.institute}</p>
-                <p className="text-sm">{education.timeline}</p>
-              </div>
-              <div className="w-2/3">
-                <p className="font-medium">{education.study}</p>
-                <p>{education.score}</p>
-              </div>
-            </div>
+            <DetailItem
+              key={education.id}
+              left={{
+                top: education.institute,
+                bottom: education.timeline,
+              }}
+              right={{ top: education.study, bottom: education.score }}
+            />
           ))}
         </Section>
-
-        <Section
-          title="Work Experience"
-          accentColor={resumeSettings.accentColor}
-        >
+        <Section title="Work Experience" accentColor={accentColor}>
           {experienceDetails.map((experience) => (
-            <div key={experience.id} className="flex mb-4">
-              <div className="w-1/3">
-                <p className="underline">{experience.company}</p>
-                <p className="text-sm">{experience.timeline}</p>
-              </div>
-              <div className="w-2/3">
-                <p className="font-medium">{experience.position}</p>
-                <p>{experience.description}</p>
-              </div>
-            </div>
+            <DetailItem
+              key={experience.id}
+              left={{
+                top: experience.company,
+                bottom: experience.timeline,
+              }}
+              right={{
+                top: experience.position,
+                bottom: experience.description,
+              }}
+            />
           ))}
         </Section>
       </div>
