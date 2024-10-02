@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ProfileEditor from "./components/ProfileEditor";
 import EducationEditor from "./components/EducationEditor";
 import ExperienceEditor from "./components/ExperienceEditor";
@@ -45,7 +45,25 @@ const DEFAULT_RESUME_SETTINGS = {
   fontStyle: "sans",
 };
 
+const A4_PAPER_WIDTH_PX = 793.701;
+
 function App() {
+  const initialScale = window.innerWidth / A4_PAPER_WIDTH_PX;
+  const [scale, setScale] = useState(initialScale > 1 ? 1 : initialScale);
+
+  useEffect(() => {
+    const handleResize = () => {
+      const scale = window.innerWidth / A4_PAPER_WIDTH_PX;
+      setScale(scale > 1 ? 1 : scale);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   const [personalDetails, setPersonalDetails] = useState(DEFAULT_PROFILE_DATA);
   const [educationDetails, setEducationDetails] = useState(
     DEFAULT_EDUCATION_DATA
@@ -75,7 +93,11 @@ function App() {
           setResumeSettings={setResumeSettings}
         />
       </section>
-      <section id="resume-view">
+      <section
+        id="resume-view"
+        style={{ transform: `scale(${scale})` }}
+        className="origin-top"
+      >
         <ResumeView
           personalDetails={personalDetails}
           educationDetails={educationDetails}

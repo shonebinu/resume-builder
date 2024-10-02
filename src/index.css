@@ -20,6 +20,7 @@
 
   #resume-view {
     visibility: visible;
+    transform: scale(1) !important;
     position: absolute;
     left: 0;
     top: 0;
@@ -27,4 +28,8 @@
     height: 100%;
     print-color-adjust: exact;
   }
+}
+
+body {
+  overflow-x: hidden;
 }

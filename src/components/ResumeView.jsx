@@ -52,7 +52,7 @@ function ResumeView({
 
   return (
     <div
-      className={`flex flex-col bg-neutral-50 aspect-[1/1.414] lg:w-[50rem] w-full font-${fontStyle}`}
+      className={`flex flex-col bg-neutral-50 h-[29.7cm] w-[21cm] font-${fontStyle}`}
     >
       <div
         style={{
